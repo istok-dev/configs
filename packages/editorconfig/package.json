@@ -1,6 +1,6 @@
 {
   "name": "@istok-dev/editorconfig",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Copy a shared .editorconfig into your project",
   "license": "MIT",
   "repository": {

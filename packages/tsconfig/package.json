@@ -1,6 +1,6 @@
 {
   "name": "@istok-dev/tsconfig",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Shared TypeScript 6 compiler options for istok-dev projects",
   "license": "MIT",
   "repository": {
