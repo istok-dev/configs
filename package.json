@@ -1,0 +1,26 @@
+{
+  "name": "@istok-dev/configs",
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/istok-dev/configs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/istok-dev/configs/issues"
+  },
+  "homepage": "https://github.com/istok-dev/configs#readme",
+  "packageManager": "pnpm@10.26.2",
+  "engines": {
+    "node": ">=24",
+    "pnpm": ">=10.26.2"
+  },
+  "scripts": {
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "2.31.0"
+  }
+}

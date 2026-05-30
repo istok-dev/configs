@@ -1,0 +1,30 @@
+{
+  "name": "@istok-dev/editorconfig",
+  "version": "0.0.1",
+  "description": "Copy a shared .editorconfig into your project",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/istok-dev/configs.git",
+    "directory": "packages/editorconfig"
+  },
+  "bugs": {
+    "url": "https://github.com/istok-dev/configs/issues"
+  },
+  "homepage": "https://github.com/istok-dev/configs/tree/master/packages/editorconfig#readme",
+  "engines": {
+    "node": ">=24"
+  },
+  "type": "module",
+  "bin": {
+    "editorconfig": "bin.mjs"
+  },
+  "files": [
+    "bin.mjs",
+    "index.mjs",
+    ".editorconfig"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
+}

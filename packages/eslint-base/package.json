@@ -1,0 +1,34 @@
+{
+  "name": "@istok-dev/eslint-base",
+  "version": "0.0.2",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/istok-dev/configs.git",
+    "directory": "packages/eslint-base"
+  },
+  "bugs": {
+    "url": "https://github.com/istok-dev/configs/issues"
+  },
+  "homepage": "https://github.com/istok-dev/configs/tree/master/packages/eslint-base#readme",
+  "engines": {
+    "node": ">=24"
+  },
+  "type": "module",
+  "exports": {
+    ".": "./index.mjs"
+  },
+  "files": [
+    "index.mjs"
+  ],
+  "peerDependencies": {
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "eslint": "^10.3.0",
+    "eslint-plugin-import-x": "^4.16.2",
+    "typescript-eslint": "^8.59.2",
+    "eslint-import-resolver-typescript": "^4.4.4"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
+}

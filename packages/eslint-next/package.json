@@ -1,0 +1,34 @@
+{
+  "name": "@istok-dev/eslint-next",
+  "version": "0.0.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/istok-dev/configs.git",
+    "directory": "packages/eslint-next"
+  },
+  "bugs": {
+    "url": "https://github.com/istok-dev/configs/issues"
+  },
+  "homepage": "https://github.com/istok-dev/configs/tree/master/packages/eslint-next#readme",
+  "engines": {
+    "node": ">=24"
+  },
+  "type": "module",
+  "exports": {
+    ".": "./index.mjs"
+  },
+  "files": [
+    "index.mjs"
+  ],
+  "dependencies": {
+    "@istok-dev/eslint-react": "workspace:*"
+  },
+  "peerDependencies": {
+    "@next/eslint-plugin-next": "^16.2.6",
+    "eslint": "^10.3.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
+}

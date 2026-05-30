@@ -1,0 +1,36 @@
+{
+  "name": "@istok-dev/eslint-react",
+  "version": "0.0.3",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/istok-dev/configs.git",
+    "directory": "packages/eslint-react"
+  },
+  "bugs": {
+    "url": "https://github.com/istok-dev/configs/issues"
+  },
+  "homepage": "https://github.com/istok-dev/configs/tree/master/packages/eslint-react#readme",
+  "engines": {
+    "node": ">=24"
+  },
+  "type": "module",
+  "exports": {
+    ".": "./index.mjs"
+  },
+  "files": [
+    "index.mjs"
+  ],
+  "dependencies": {
+    "@istok-dev/eslint-base": "workspace:*"
+  },
+  "peerDependencies": {
+    "eslint": "^10.3.0",
+    "eslint-plugin-better-tailwindcss": "^4.5.0",
+    "@eslint-react/eslint-plugin": "^5.7.6",
+    "eslint-plugin-react-hooks": "^7.1.1"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
+}
