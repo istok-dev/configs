@@ -1,5 +1,5 @@
 {
-  "name": "@istok-dev/istok-configs",
+  "name": "@istok-dev/configs",
   "version": "1.0.0",
   "description": "Shared project configs: Cursor Agent Skills and EditorConfig",
   "license": "MIT",
