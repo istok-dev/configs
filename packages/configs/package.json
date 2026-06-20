@@ -1,6 +1,6 @@
 {
   "name": "@istok-dev/istok-configs",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Shared project configs: Cursor Agent Skills and EditorConfig",
   "license": "MIT",
   "repository": {
