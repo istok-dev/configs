@@ -33,7 +33,7 @@ export GITHUB_TOKEN=ghp_...
 | [`@istok-dev/eslint-next`](./packages/eslint-next) | Next.js поверх react |
 | [`@istok-dev/eslint-nest`](./packages/eslint-nest) | NestJS поверх base |
 | [`@istok-dev/tsconfig`](./packages/tsconfig) | Пресеты TypeScript 6 |
-| [`@istok-dev/editorconfig`](./packages/editorconfig) | Общий `.editorconfig` |
+| [`@istok-dev/istok-configs`](./packages/configs) | Skills для Cursor и `.editorconfig` |
 
 ---
 
@@ -159,17 +159,46 @@ pnpm add -D @istok-dev/tsconfig typescript @types/node
 
 ---
 
-## EditorConfig
+## Project configs
+
+Skills для Cursor Agent и общий `.editorconfig` через единый конфиг.
 
 ```bash
-pnpm add -D @istok-dev/editorconfig
-pnpm exec editorconfig
+pnpm add -D @istok-dev/istok-configs
 ```
 
-Скопирует `.editorconfig` в текущую директорию. Другая папка:
+Создайте `istok.config.js`, `istok.config.mjs` или `istok.config.json` в корне проекта:
+
+```js
+// istok.config.js
+export default {
+  skills: ["prisma", "next-project-structure"],
+  editorconfig: true,
+};
+```
+
+```json
+{
+  "skills": ["prisma", "next-project-structure"],
+  "editorconfig": true
+}
+```
+
+Применить конфиг:
 
 ```bash
-pnpm exec editorconfig ./apps/web
+pnpm exec istok
+```
+
+- `skills` — копирует указанные скиллы в `.agents/skills/`
+- `editorconfig: true` — копирует `.editorconfig` в корень проекта
+
+Доступные скиллы: `nest-project-structure`, `next-project-envs`, `next-project-structure`, `prisma`.
+
+Другой путь к конфигу:
+
+```bash
+pnpm exec istok --config ./configs/istok.config.json
 ```
 
 ---

@@ -21,6 +21,7 @@ export default defineConfig(
           detectComponentClasses: true,
         },
       ],
+      'better-tailwindcss/enforce-consistent-class-order': 'error',
     },
     settings: {
       react: {
