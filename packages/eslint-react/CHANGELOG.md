@@ -4,6 +4,12 @@
 
 ### Patch Changes
 
+- 5cd88c8: Включено правило `better-tailwindcss/enforce-consistent-class-order` (`error`).
+
+## 1.0.1
+
+### Patch Changes
+
 - Включено правило `better-tailwindcss/enforce-consistent-class-order` (`error`).
 
 ## 1.0.0

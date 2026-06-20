@@ -4,6 +4,13 @@
 
 ### Patch Changes
 
+- Updated dependencies [5cd88c8]
+  - @istok-dev/eslint-react@1.0.1
+
+## 1.0.1
+
+### Patch Changes
+
 - Updated dependencies
   - @istok-dev/eslint-react@1.0.1
 
