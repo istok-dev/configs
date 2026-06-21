@@ -4,6 +4,14 @@
 
 ### Minor Changes
 
+- a091bb1: Добавлен skill `workspace`: организация pnpm monorepo, приложения в `apps/*`, пакеты в `packages/*`.
+
+  Добавлен skill `authorization`: OAuth2/OIDC (PKCE), NextAuth на клиенте, JWT-валидация на NestJS.
+
+## 1.1.0
+
+### Minor Changes
+
 - Добавлен skill `workspace`: организация pnpm monorepo, приложения в `apps/*`, пакеты в `packages/*`.
 - Добавлен skill `authorization`: OAuth2/OIDC (PKCE), NextAuth на клиенте, JWT-валидация на NestJS.
 
