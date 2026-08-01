@@ -61,6 +61,7 @@ pnpm add -D <devDep> --filter @scope/<name>
 ```
 
 4. Для структуры кода внутри приложения используй профильные skills:
+   - React → `react-project`
    - Next.js → `next-project-structure`, `next-project-envs`
    - NestJS → `nest-project-structure`
    - Prisma → `prisma`

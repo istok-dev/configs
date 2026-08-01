@@ -25,7 +25,7 @@
     "@istok-dev/eslint-base": "workspace:*"
   },
   "peerDependencies": {
-    "eslint": "^10.3.0"
+    "eslint": "^10.8.0"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"

@@ -43,7 +43,7 @@ export const publicEnvConfig = {
 ```ts
 import { publicEnvConfig } from "@/shared/configs/public-env";
 
-fetch(`${publicEnvConfig.server.apiUrl}/skills`);
+fetch(`${publicEnvConfig.server.apiUrl}/users`);
 ```
 
 ## `src/shared/configs/server-env.ts`

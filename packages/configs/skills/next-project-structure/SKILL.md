@@ -2,7 +2,7 @@
 name: next-project-structure
 description: >-
   Структура Next.js проекта.
-  Используй при создании страниц, роутов, конфигов и при рефакторинге структуры web-приложения.
+  Используй при создании страниц, роутов, конфигов, tsconfig, ESLint и при рефакторинге структуры web-приложения.
 ---
 
 # Структура Next.js проекта
@@ -171,3 +171,116 @@ export default ErrorPage;
 Сюда выносятся константы приложения, настройки окружения, feature flags, маршруты, темы и прочие конфигурационные данные — всё, что не является UI и не привязано к одной странице.
 
 Env-конфиги (`public-env.ts`, `server-env.ts`) группируют переменные во вложенные объекты по логическому домену — см. skill `next-project-envs`.
+
+## TypeScript (`tsconfig`)
+
+Базовые настройки — shared-preset `@istok-dev/tsconfig/next.json`. Единственный конфиг: `tsconfig.json` в корне frontend-приложения.
+
+**Не дублируй** strict/module/lib из preset — переопределяй только project-specific опции.
+
+```json
+{
+  "extends": "@istok-dev/tsconfig/next.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "noPropertyAccessFromIndexSignature": false,
+    "noUncheckedIndexedAccess": false,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/views/*": ["./src/views/*"]
+    },
+    "esModuleInterop": true
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": ["node_modules"]
+}
+```
+
+| Override | Зачем |
+|----------|-------|
+| `jsx: "preserve"` | JSX обрабатывает Next.js / SWC |
+| `paths` | алиасы `@/*` (общий код) и `@/views/*` (страницы) |
+| `include` | исходники + типы Next (`.next/types`) |
+
+Новый path alias → добавь в `paths` и используй тот же префикс в импортах (`@/components/*`, `@/shared/*` и т.д.).
+
+DevDependency: `"@istok-dev/tsconfig": "<version>"` в `package.json` приложения.
+
+**Не создавай** отдельный `tsconfig.build.json` — сборку типов ведёт Next.js.
+
+## ESLint
+
+ESLint 10 (flat config) во frontend-приложении (`apps/<frontend>/`). Preset — `@istok-dev/eslint-next` из org registry (см. `.npmrc`). Версия `eslint` закреплена в root monorepo.
+
+### Файл конфигурации
+
+Единственный конфиг: `eslint.config.mjs` в корне приложения. **Не создавай** `.eslintrc*` — расширяй этот файл.
+
+```js
+import eslintConfig from '@istok-dev/eslint-next';
+import { defineConfig, globalIgnores } from 'eslint/config';
+import { resolve, dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const tailwindEntry = resolve(__dirname, './src/app/globals.css');
+
+/** Паттерны Tailwind-классов, не выводимые из entryPoint — настрой под проект */
+const tailwindUnknownClassIgnore = ['<design-system-prefix>-*', '<custom-utility>'];
+
+export default defineConfig(
+  eslintConfig,
+  {
+    settings: {
+      'import/resolver': {
+        typescript: {
+          project: resolve(__dirname, './tsconfig.json'),
+          alwaysTryTypes: true,
+        },
+      },
+      'better-tailwindcss': { entryPoint: tailwindEntry },
+      'eslint-plugin-better-tailwindcss': { entryPoint: tailwindEntry },
+    },
+    rules: {
+      'better-tailwindcss/no-unknown-classes': ['error', { ignore: tailwindUnknownClassIgnore }],
+    },
+  },
+  globalIgnores(['dist/**']),
+);
+```
+
+### Что входит в `@istok-dev/eslint-next`
+
+| Слой | Пакет | Основные правила |
+|------|-------|------------------|
+| TypeScript / imports | `@istok-dev/eslint-base` | `typescript-eslint`, `eslint-plugin-import-x`, `@stylistic/eslint-plugin` |
+| React / Tailwind | `@istok-dev/eslint-react` | `@eslint-react/eslint-plugin`, `eslint-plugin-react-hooks`, `eslint-plugin-better-tailwindcss` |
+| Next.js | `@next/eslint-plugin-next` | правила Next.js |
+
+**Не дублируй** плагины локально — меняй preset в `@istok-dev/*`, если нужны общие правила для всех проектов.
+
+### Project overrides
+
+В `eslint.config.mjs` — только настройки, специфичные для репозитория:
+
+- **`import/resolver.typescript`** — резолв path aliases через `tsconfig.json` приложения
+- **`better-tailwindcss.entryPoint`** — путь к Tailwind entry (обычно `./src/app/globals.css`)
+- **`tailwindUnknownClassIgnore`** — glob-паттерны кастомных/динамических классов для `better-tailwindcss/no-unknown-classes`
+
+Новые игнорируемые классы добавляй в `tailwindUnknownClassIgnore`, а не отключай rule целиком.
+
+### Запуск
+
+Имя пакета — поле `name` в `package.json` (`<frontend-package>`).
+
+| Команда | Что делает |
+|---------|------------|
+| `pnpm --filter <frontend-package> lint` | `eslint .` |
+| `pnpm lint` (root) | lint всех workspace-пакетов |
+
+**Не отключай** правила без причины; `eslint-disable` — точечно, с комментарием почему.

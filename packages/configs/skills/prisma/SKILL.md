@@ -9,7 +9,9 @@ description: >-
 
 **Не запускай миграции** (`prisma migrate dev`, `prisma migrate deploy`, `prisma migrate reset`, `pnpm db:migrate`) без явного указания пользователя.
 
-Допустимо без запроса: править `schema.prisma`, создавать/редактировать SQL-файлы в `prisma/migrations/`, `prisma generate`.
+**Никогда не меняй уже применённые миграции** — SQL-файлы в `prisma/migrations/`, которые уже были применены к БД (локально, на staging или production). Для изменений схемы создавай новую миграцию. Редактирование применённых миграций ломает историю схемы и приводит к рассинхрону между окружениями.
+
+Допустимо без запроса: править `schema.prisma`, создавать новые SQL-файлы в `prisma/migrations/`, `prisma generate`.
 
 ## Имя таблицы
 

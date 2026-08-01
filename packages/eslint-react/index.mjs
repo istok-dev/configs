@@ -14,6 +14,10 @@ export default defineConfig(
     name: "@istok-dev/eslint-react",
     rules: {
       "react/react-in-jsx-scope": "off",
+      "@eslint-react/no-context-provider": "error",
+      "@eslint-react/no-forward-ref": "error",
+      "@eslint-react/no-use-context": "error",
+      "@eslint-react/no-context-provider": "error",
       "better-tailwindcss/no-unknown-classes": [
         "error",
         {
