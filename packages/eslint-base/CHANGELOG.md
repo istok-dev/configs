@@ -1,5 +1,13 @@
 # @istok-dev/eslint-base
 
+## 1.0.1
+
+### Patch Changes
+
+- 3531b87: Обновлены peerDependencies ESLint-пакетов (`eslint` ^10.8.0 и связанные плагины).
+
+  В `@istok-dev/eslint-react` включены правила React 19: `@eslint-react/no-context-provider`, `@eslint-react/no-forward-ref`, `@eslint-react/no-use-context`.
+
 ## 1.0.0
 
 ### Major Changes
